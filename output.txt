@@ -1,0 +1,26 @@
+rails 4.2.4 - no octopus
+
+user.posts - 0 posts - `user.posts`
+                          1.360M (± 9.0%) i/s -      6.750M
+user.posts - 0 posts - `user.posts.map(&:title)`
+                        563.647k (± 5.3%) i/s -      2.830M
+user.posts - 100 posts - `user.posts`
+                          1.342M (±10.1%) i/s -      6.632M
+user.posts - 100 posts - `user.posts.map(&:title)``
+                         20.153k (± 3.1%) i/s -    102.030k
+    post.user           704.683k (± 8.0%) i/s -      3.508M
+    post.user.name      518.970k (± 7.1%) i/s -      2.596M
+
+
+rails 4.2.4 - octopus
+
+user.posts - 0 posts - `user.posts`
+                         85.361k (± 3.7%) i/s -    429.387k
+user.posts - 0 posts - `user.posts.map(&:title)`
+                         17.818k (± 4.5%) i/s -     89.019k
+user.posts - 100 posts - `user.posts`
+                         85.357k (± 4.3%) i/s -    427.986k
+user.posts - 100 posts - `user.posts.map(&:title)``
+                          8.886k (± 5.8%) i/s -     44.309k
+    post.user            74.502k (± 5.0%) i/s -    372.679k
+    post.user.name       70.051k (± 5.3%) i/s -    349.941k

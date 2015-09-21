@@ -1,0 +1,56 @@
+== Octopus Performance Degradation
+
+This is an example show that Octopus degrades performance of simple associations.
+
+== Run it ==
+
+$ bin/rails runner script/profile.rb
+
+```
+Before Octopus
+Calculating -------------------------------------
+user.posts - 0 posts - user.posts
+                        30.515k i/100ms
+user.posts - 0 posts - user.posts.map(&:title)
+                        21.625k i/100ms
+user.posts - 100 posts - user.posts
+                        29.761k i/100ms
+user.posts - 100 posts - user.posts.map(&:title)
+                         1.680k i/100ms
+           post.user    22.174k i/100ms
+      post.user.name    20.461k i/100ms
+-------------------------------------------------
+user.posts - 0 posts - user.posts
+                          1.330M (± 9.4%) i/s -      6.591M
+user.posts - 0 posts - user.posts.map(&:title)
+                        550.101k (± 6.4%) i/s -      2.746M
+user.posts - 100 posts - user.posts
+                          1.287M (±10.8%) i/s -      6.369M
+user.posts - 100 posts - user.posts.map(&:title)
+                         18.984k (± 7.2%) i/s -     95.760k
+           post.user    669.718k (± 7.9%) i/s -      3.326M
+      post.user.name    491.113k (± 7.2%) i/s -      2.455M
+After Octopus
+Calculating -------------------------------------
+user.posts - 0 posts - user.posts
+                         6.346k i/100ms
+user.posts - 0 posts - user.posts.map(&:title)
+                         2.193k i/100ms
+user.posts - 100 posts - user.posts
+                         6.660k i/100ms
+user.posts - 100 posts - user.posts.map(&:title)
+                       940.000  i/100ms
+           post.user     6.201k i/100ms
+      post.user.name     5.793k i/100ms
+-------------------------------------------------
+user.posts - 0 posts - user.posts
+                         94.017k (± 4.8%) i/s -    469.604k
+user.posts - 0 posts - user.posts.map(&:title)
+                         24.923k (± 3.6%) i/s -    125.001k
+user.posts - 100 posts - user.posts
+                         94.163k (± 6.6%) i/s -    472.860k
+user.posts - 100 posts - user.posts.map(&:title)
+                          9.891k (± 4.6%) i/s -     49.820k
+           post.user     83.874k (± 4.8%) i/s -    421.668k
+      post.user.name     77.479k (± 4.7%) i/s -    388.131k
+```
