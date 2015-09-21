@@ -2,24 +2,21 @@
 
 This is an example show that Octopus degrades performance of simple associations.
 
+== Set it up
+
+We run in production mode to ensure that caching is on
+
+$ RAILS_ENV=production bin/rake db:create db:migrate
+
 == Run it ==
 
-$ bin/rails runner script/profile.rb
+$ RAILS_ENV=production bin/rails runner script/profile.rb
 
 ```
+--------------
 Before Octopus
-Calculating -------------------------------------
-user.posts - 0 posts - user.posts
-                        30.515k i/100ms
-user.posts - 0 posts - user.posts.map(&:title)
-                        21.625k i/100ms
-user.posts - 100 posts - user.posts
-                        29.761k i/100ms
-user.posts - 100 posts - user.posts.map(&:title)
-                         1.680k i/100ms
-           post.user    22.174k i/100ms
-      post.user.name    20.461k i/100ms
--------------------------------------------------
+--------------
+
 user.posts - 0 posts - user.posts
                           1.330M (± 9.4%) i/s -      6.591M
 user.posts - 0 posts - user.posts.map(&:title)
@@ -30,19 +27,11 @@ user.posts - 100 posts - user.posts.map(&:title)
                          18.984k (± 7.2%) i/s -     95.760k
            post.user    669.718k (± 7.9%) i/s -      3.326M
       post.user.name    491.113k (± 7.2%) i/s -      2.455M
+
+-------------
 After Octopus
-Calculating -------------------------------------
-user.posts - 0 posts - user.posts
-                         6.346k i/100ms
-user.posts - 0 posts - user.posts.map(&:title)
-                         2.193k i/100ms
-user.posts - 100 posts - user.posts
-                         6.660k i/100ms
-user.posts - 100 posts - user.posts.map(&:title)
-                       940.000  i/100ms
-           post.user     6.201k i/100ms
-      post.user.name     5.793k i/100ms
--------------------------------------------------
+-------------
+
 user.posts - 0 posts - user.posts
                          94.017k (± 4.8%) i/s -    469.604k
 user.posts - 0 posts - user.posts.map(&:title)

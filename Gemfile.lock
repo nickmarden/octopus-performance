@@ -36,7 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    ar-octopus (0.8.4)
+    ar-octopus (0.8.5)
       activerecord (>= 3.2.0)
       activesupport (>= 3.2.0)
     arel (6.0.3)
@@ -102,7 +102,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ar-octopus (= 0.8.4)
+  ar-octopus (= 0.8.5)
   benchmark-ips
   byebug
   rails (= 4.2.4)
